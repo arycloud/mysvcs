@@ -8,7 +8,7 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-app.get('/', (req, res) => {
+app.get('/node', (req, res) => {
   res.send('Hello world from node application\n');
 });
 

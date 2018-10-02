@@ -3,14 +3,11 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/python')
 def hello_world():
     return 'Hello World!'
 
 
-@app.route('/<name>/test')
-def user_name(name):
-    return 'Hello ' + name
 
 
 if __name__ == '__main__':
