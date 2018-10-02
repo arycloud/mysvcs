@@ -3,9 +3,9 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/python')
+@app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return 'Hello World, from Python Service.'
 
 
 
