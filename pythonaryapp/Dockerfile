@@ -1,20 +1,30 @@
-FROM ubuntu:latest
-LABEL Abdul Rehman
+#
+# Nginx Dockerfile
+#
+# https://github.com/dockerfile/nginx
+#
 
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
+# Pull base image.
+FROM dockerfile/ubuntu
 
-#Add source files
-COPY . /app
-ENV HOME=/app
+# Install Nginx.
+RUN \
+  add-apt-repository -y ppa:nginx/stable && \
+  apt-get update && \
+  apt-get install -y nginx && \
+  rm -rf /var/lib/apt/lists/* && \
+  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+  chown -R www-data:www-data /var/lib/nginx
 
-WORKDIR /app
-RUN pip install -r requirements.txt
+# Define mountable directories.
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
-ENV FLASK_APP=python-ary-app.py
+# Define working directory.
+WORKDIR /etc/nginx
 
-EXPOSE 5000
+# Define default command.
+CMD ["nginx"]
 
-ENTRYPOINT [ "gunicorn", "-b", "0.0.0.0:5000", "-w", "4", "wsgi:app" ]
-
-
+# Expose ports.
+EXPOSE 80
+EXPOSE 443

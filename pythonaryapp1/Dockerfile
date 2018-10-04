@@ -1,20 +1,9 @@
-FROM ubuntu:latest
-LABEL Abdul Rehman
+# A basic apache server with PHP. To use either add or bind mount content under /var/www
 
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
+FROM kstaken/apache2
 
-#Add source files
-COPY . /app
-ENV HOME=/app
+MAINTAINER Kimbro Staken version: 0.1
 
-WORKDIR /app
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y php5 libapache2-mod-php5 php5-mysql php5-cli && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV FLASK_APP=python-ary-app.py
-
-EXPOSE 5000
-
-ENTRYPOINT [ "gunicorn", "-b", "0.0.0.0:5000", "-w", "4", "wsgi:app" ]
-
-
+CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
