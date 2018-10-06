@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/python-ary-app.iml" filepath="$PROJECT_DIR$/.idea/python-ary-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pyservice.iml" filepath="$PROJECT_DIR$/.idea/pyservice.iml" />
     </modules>
   </component>
 </project>
