@@ -13,7 +13,7 @@ app.get('/node/svc/', (req, res) => {
 });
 
 app.get('/', (req, res) =>{
-  res.status(200).send('Welcome to NodeJS world.')
+  res.send(200)
 });
 
 app.listen(PORT, HOST);
